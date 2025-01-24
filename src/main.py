@@ -4,39 +4,41 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Example module parameters for the Canadian Solar CS5P-220M:
+# Example module parameters for the Trina Solar TSM-NEG19RC.20:
 parameters = {
-    'Name': 'Canadian Solar CS5P-220M',
+    'Name': 'Trina Solar TSM-NEG19RC.20',
     'BIPV': 'N',
-    'Date': '10/5/2009',
+    'Date': '10/5/2024',
     'T_NOCT': 42.4,
     'A_c': 1.7,
     'N_s': 96,
-    'I_sc_ref': 5.1,
-    'V_oc_ref': 59.4,
-    'I_mp_ref': 4.69,
-    'V_mp_ref': 46.9,
-    'alpha_sc': 0.004539,
-    'beta_oc': -0.22216,
+    'I_sc_ref': 15.8,
+    'V_oc_ref': 48.4,
+    'I_mp_ref': 14.91,
+    'V_mp_ref': 40.3,
+    'alpha_sc': 0.04,                                   #  Temperature Coe cient of ISC
+    'beta_oc': -0.24,                                   # Temp. Coefficient of Voltage
     'a_ref': 2.6373,
     'I_L_ref': 5.114,
     'I_o_ref': 8.196e-10,
     'R_s': 1.065,
     'R_sh_ref': 381.68,
     'Adjust': 8.7,
-    'gamma_r': -0.476,
+    'gamma_r': -0.29,                                   # Temp. Coefficient of Power
     'Version': 'MM106',
     'PTC': 200.1,
     'Technology': 'Mono-c-Si',
 }
 
 cases = [
+    (1200, 55),
     (1000, 55),
     (800, 55),
     (600, 55),
     (400, 25),
     (400, 40),
-    (400, 55)
+    (400, 55),
+    (400, 60),
 ]
 
 conditions = pd.DataFrame(cases, columns=['Geff', 'Tcell'])
@@ -88,9 +90,9 @@ if __name__ == "__main__":
         plt.plot([v_mp], [i_mp], ls='', marker='o', c='k')
 
     # Labels and title
-    plt.title("I-V Curves of a PV Module at Different Irradiances")
-    plt.xlabel("Voltage (V)")
-    plt.ylabel("Current (A)")
+    plt.title("Curva I-V de módulos FV")
+    plt.xlabel("Tensão (V)")
+    plt.ylabel("Corrente (A)")
     plt.grid(True)
     plt.legend()
 
