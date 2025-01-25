@@ -7,7 +7,7 @@ source myenv/bin/activate  # Activate the environment
 
 
 ``` shell
-source myenv/bin/activate 
+source .python/bin/activate 
 
 ```
 
