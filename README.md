@@ -3,8 +3,6 @@
 As bibliotecas são compativeis com python 3.10.21
 
 python3.10 -m venv myenv
-source myenv/bin/activate  # Activate the environment
-
 
 ``` shell
 source .python/bin/activate 

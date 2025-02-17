@@ -8,6 +8,10 @@ latitude = -10.701  # Latitude (São Paulo, por exemplo)
 longitude = -37.249  # Longitude
 tz = 'America/Bahia'
 
+# Orientação do módulo
+tilt_angle = 11  # Inclinação do módulo (em graus)
+facing_angle = 0  # Ângulo de orientação do módulo (em graus, 0º = norte)
+
 # Create location object to store lat, lon, timezone
 site = location.Location(latitude, longitude, tz=tz)
 
@@ -39,8 +43,8 @@ def get_irradiance(site_location, date, tilt, surface_azimuth):
 
 # Get irradiance data for summer and winter solstice, assuming 11 degree tilt
 # and a north facing array
-summer_irradiance = get_irradiance(site, '06-20-2024', 11, 0)
-winter_irradiance = get_irradiance(site, '12-21-2024', 11, 0)
+summer_irradiance = get_irradiance(site, '06-20-2024', tilt_angle, facing_angle)
+winter_irradiance = get_irradiance(site, '12-21-2024', tilt_angle, facing_angle)
 
 # Print the highest GHI and POA values for summer and winter
 print("Verão:")

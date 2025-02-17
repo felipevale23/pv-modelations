@@ -37,10 +37,6 @@ def calculate_daily_irradiation(site, date, tilt, surface_azimuth):
     # Integrate GHI and POA over the day (sum up 10-minute intervals)
     daily_ghi = clearsky['ghi'].sum()  
     daily_poa = poa_irradiance['poa_direct'].sum()   
-
-    # print(poa_irradiance)
-    # print(daily_ghi)
-    # print(daily_poa)
     
     return daily_ghi, daily_poa
 
@@ -84,10 +80,10 @@ print(results_df)
 
 # Plot results
 results_df.plot(kind="bar", x="Month", y=["GHI (kWh/m²)", "POA (kWh/m²)"], figsize=(10, 6), color=["#1f77b4", "#ff7f0e"])
-plt.title("Monthly Irradiation for GHI and POA")
-plt.ylabel("Irradiation (kWh/m²)")
-plt.xlabel("Month")
-plt.xticks(ticks=range(12), labels=["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], rotation=45)
+plt.title("Irradiação Mensal para GHI e POA", fontsize=16, fontweight='bold')
+plt.ylabel("Irradiação (kWh/m² * dia)")
+plt.xlabel("Mês")
+plt.xticks(ticks=range(12), labels=["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],rotation=45)
 plt.grid(axis="y", linestyle="--", alpha=0.7)
 plt.tight_layout()
 plt.savefig("Monthly_Irradiation.png", dpi=300)
@@ -101,15 +97,15 @@ for month in range(1, 13):
 results_df = pd.DataFrame(results)
 
 # Print results
-print("Irradiação Mensal (kWh/m²):")
-print(results_df)
-print("Media Anual (kWh/m²):")
-print(results_df, results_df["POA (kWh/m²)"].sum() / 12)
+print("\nMedia Anual (kWh/m²):", results_df["POA (kWh/m²)"].sum() / 12)
+
+delta_poa_index = results_df["POA (kWh/m²)"].max() - results_df["POA (kWh/m²)"].min()
+print("Variação Mensal Média (kWh/m²):", delta_poa_index)
 
 # Plot results
 results_df.plot(kind="line", x="Month", y="POA (kWh/m²)", figsize=(10, 6), color="#5f4bb6", marker='o', legend=False)
 plt.title("Irradiação Direta na Superfície do Painel", fontsize=16, fontweight='bold')
-plt.ylabel("Irradiação (kWh/m²)")
+plt.ylabel("Irradiação (kWh/m² * dia)")
 plt.xlabel("Mês")
 plt.xticks(ticks=range(12), labels=["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"], rotation=45)
 plt.grid(axis="y", linestyle="--", alpha=0.7)
