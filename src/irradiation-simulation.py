@@ -98,7 +98,6 @@ results_df = pd.DataFrame(results)
 
 # Print results
 print("\nMedia Anual (kWh/m²):", results_df["POA (kWh/m²)"].sum() / 12)
-
 delta_poa_index = results_df["POA (kWh/m²)"].max() - results_df["POA (kWh/m²)"].min()
 print("Variação Mensal Média (kWh/m²):", delta_poa_index)
 
